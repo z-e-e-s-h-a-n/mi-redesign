@@ -85,3 +85,15 @@ mimedcarellc.com. Industry figures in "the problem" section (65% of denials neve
 ~$25 to rework a claim, 45+ days in A/R) are stated as industry norms, and the ROI
 calculator labels its own assumptions inline — swap in MI MedCare's own audited numbers
 before launch if you'd rather cite first-party data.
+
+## Live preview
+
+Published as a Claude Artifact: <https://claude.ai/artifact/KK79bmgY6d2UqUDsmurJvs>
+
+`preview.html` is generated, not hand-edited — the artifact host supplies its own
+`<!doctype>/<html>/<head>/<body>` skeleton, so a published page contributes only its head
+extras and body content. `index.html` stays the standalone source of truth:
+
+```
+python3 tools/build-preview.py   # regenerate preview.html after editing index.html
+```

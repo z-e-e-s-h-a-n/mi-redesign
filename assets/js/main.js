@@ -13,7 +13,7 @@
     var root = document.documentElement, btn = $('#themeToggle');
     var saved = null;
     try { saved = localStorage.getItem('mimc-theme'); } catch (e) {}
-    if (saved) root.setAttribute('data-theme', saved);
+    root.setAttribute('data-theme', saved === 'light' ? 'light' : 'dark');
     sync();
 
     function sync() {
@@ -86,7 +86,12 @@
         if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
       });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-    items.forEach(function (el) { io.observe(el); });
+
+    items.forEach(function (el) {
+      /* above the fold at load: show it now so the first painted frame is complete */
+      if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('in');
+      else io.observe(el);
+    });
   })();
 
   /* ---------------------------------------------------- animated counters */
